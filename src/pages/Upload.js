@@ -22,6 +22,18 @@ export default function Upload() {
         const imageUrl = data.url
 
         // 2. send the image link and user's name to our storage
+        const submissionData = { imageUrl, name }
+
+        console.log(submissionData)
+        return
+        const dbresp = await fetch('/api/submissions', {
+            method: 'POST',
+            body: JSON.stringify(submissionData)
+        })
+
+        const dbdata = await dbresp.json()
+
+        console.log(dbdata)
     }
 
     return (
