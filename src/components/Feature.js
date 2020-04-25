@@ -6,7 +6,7 @@ export default function Feature({ sub }) {
     const [revealed, setRevealed] = useState(false)
 
     const handleRevealClick = async () => {
-        const resp = await fetch('/api/update', {
+        const resp = await fetch('/api/reveal', {
             method: 'PATCH',
             body: JSON.stringify({ id: imageId })
         })
