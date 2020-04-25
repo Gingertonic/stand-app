@@ -9,14 +9,17 @@ export default function Play() {
         const fetchFeatured = async () => {
             setLoading(true)
             const resp = await fetch('/api/featured')
-            const featured = await resp.json()
+            const { featured } = await resp.json()
             setFeatured(featured)
             setLoading(false)
         }
         fetchFeatured()
     }, [])
 
-    const showFeatured = () => featured.map(f => <Feature key={Math.random()} sub={f}/>)
+    const showFeatured = () => {
+        return featured.length < 1 ? <p>We're out of submissions!</p>
+        : featured.map(f => <Feature key={Math.random()} sub={f}/>)
+    }
 
     return (
         <div>
