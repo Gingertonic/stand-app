@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Feature } from '../components'
 
 export default function Play() {
     const [loading, setLoading] = useState(false) 
@@ -15,9 +16,16 @@ export default function Play() {
         fetchFeatured()
     }, [])
 
+    const showFeatured = () => featured.map(f => <Feature key={Math.random()} sub={f}/>)
+
     return (
         <div>
-           <h1>Play</h1> 
+           <h1>Play</h1>
+           { loading ?
+            <p>Loading . . .</p>
+           :
+            showFeatured()
+           }
         </div>
     )
 }
