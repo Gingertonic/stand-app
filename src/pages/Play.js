@@ -17,7 +17,7 @@ export default function Play() {
     }, [])
 
     const showFeatured = () => {
-        return featured.length < 1 ? <p>We're out of submissions!</p>
+        return !featured[0] ? <p>We're out of submissions!</p>
         : featured.map(f => <Feature key={Math.random()} sub={f}/>)
     }
 
