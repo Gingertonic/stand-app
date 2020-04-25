@@ -57,6 +57,7 @@ export default function Upload() {
             <h1>Upload</h1>
             <input type="text" value={name} onChange={handleNameChange}/>
             <input type="file" onChange={storeFileLocally}/>
+            { file ? <img className="preview" src={URL.createObjectURL(file)} alt="upload preview"/> : null }
             <button onClick={handleUploadClick}>Upload!</button>
             </>
         )

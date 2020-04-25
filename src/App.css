@@ -2,6 +2,6 @@
   text-align: center;
 }
 
-.featured img {
+.featured img, .preview {
   height: 200px;
 }
