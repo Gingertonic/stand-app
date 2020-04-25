@@ -4,7 +4,7 @@ const q = faunadb.query
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'PATCH'){
-    return { statusCode: 403, body: JSON.stringify({ message: "PATCH IT UP!"})} 
+    return { statusCode: 405, body: JSON.stringify({ message: "PATCH IT UP!"})} 
   }
 
   try {

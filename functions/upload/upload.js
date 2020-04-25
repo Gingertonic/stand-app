@@ -4,7 +4,7 @@ const q = faunadb.query
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST'){
-    return { statusCode: 403, body: JSON.stringify({ message: "POST OR BUST!"})} 
+    return { statusCode: 405, body: JSON.stringify({ message: "POST OR BUST!"})} 
   }
 
   try {
