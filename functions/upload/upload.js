@@ -11,7 +11,7 @@ exports.handler = async (event, context) => {
     const { name, imageUrl } = JSON.parse(event.body)
 
     const submission = { data: {
-      name, imageUrl, shown: true
+      name, imageUrl, shown: false
     }}
 
     const req = await fauna.query(q.Create(q.Ref("classes/submissions"), submission))

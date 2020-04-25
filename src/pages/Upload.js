@@ -10,6 +10,8 @@ export default function Upload() {
     const handleNameChange = e => setName(e.target.value)
 
     const handleUploadClick = async () => {
+        setUploadStatus('Uploading . . .')
+
         const imageData = new FormData()
         imageData.append('upload_preset', 'stand-app')
         imageData.append('file', file)
@@ -18,25 +20,35 @@ export default function Upload() {
             method: 'POST',
             body: imageData
         })
+        const { error, url } = await resp.json()
+        if(error){return}
 
-        const data = await resp.json()
-        const imageUrl = data.url
+        const imageUrl = url
 
         // // 2. send the image link and user's name to our storage
         const submissionData = { imageUrl, name }
-
-        // console.log(submissionData)
-        
         const dbresp = await fetch('/api/upload', {
             method: 'POST',
             body: JSON.stringify(submissionData)
         })
-
         const dbdata = await dbresp.json()
 
-        dbdata.message ? setUploadStatus('Success') : console.error('Something went wrong....')
+        dbdata.message ? setSuccess() : console.error('Something went wrong....')    
+    }
 
-       
+    const setSuccess = () => {
+        setUploadStatus('Upload successful!')
+        resetInputs()
+    }
+
+    const resetInputs = () => {
+        setFile("")
+        setName("")
+    }
+
+    const reset = () => {
+        setUploadStatus(false)
+        resetInputs()
     }
 
     const showUploadWidget = () => {
@@ -53,7 +65,12 @@ export default function Upload() {
     return (
         <div>
             {
-                uploadStatus !== 'Success' ? showUploadWidget() : <p>Yay you uploaded!</p> 
+                uploadStatus ? 
+                    <div>
+                        <h2>{uploadStatus}</h2>
+                        <button onClick={reset} disabled={uploadStatus !== 'Upload successful!'}>Upload another?</button>
+                    </div> 
+                : showUploadWidget()
             }
             
         </div>
