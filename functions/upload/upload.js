@@ -7,12 +7,19 @@ exports.handler = async (event, context) => {
     return { statusCode: 403, body: JSON.stringify({ message: "POST OR BUST!"})} 
   }
 
-  console.log(fauna)
+
 
   try {
+    const { name, imageUrl } = JSON.parse(event.body)
 
-    return { statusCode: 200, body: JSON.stringify({ message: "test"})}
+    const submission = { data: {
+      name, imageUrl, shown: false
+    }}
+
+    const req = await fauna.query(q.Create(q.Ref("classes/submissions"), submission))
+
+    return { statusCode: 200, body: JSON.stringify({ message: 'Yay submitted!' })}
   } catch (err) {
-    return { statusCode: 500, body: err.toString() }
+    return { statusCode: 500, body: err }
   }
 }

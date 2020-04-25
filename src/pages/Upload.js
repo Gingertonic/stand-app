@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 export default function Upload() {
+    const [uploadStatus, setUploadStatus] = useState(false)
     const [file, setFile] = useState("")
     const [name, setName] = useState("")
 
@@ -33,15 +34,28 @@ export default function Upload() {
 
         const dbdata = await dbresp.json()
 
-        console.log(dbdata)
+        dbdata.message ? setUploadStatus('Success') : console.error('Something went wrong....')
+
+       
     }
 
-    return (
-        <div>
+    const showUploadWidget = () => {
+        return (
+            <>
             <h1>Upload</h1>
             <input type="text" value={name} onChange={handleNameChange}/>
             <input type="file" onChange={storeFileLocally}/>
             <button onClick={handleUploadClick}>Upload!</button>
+            </>
+        )
+    }
+
+    return (
+        <div>
+            {
+                uploadStatus !== 'Success' ? showUploadWidget() : <p>Yay you uploaded!</p> 
+            }
+            
         </div>
     )
 }
