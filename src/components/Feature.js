@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-export default function Feature({ sub }) {
+export default function Feature({ sub, submit }) {
     const { imageUrl, name } = sub.data
     const imageId = sub.ref['@ref'].id
     const [revealed, setRevealed] = useState(false)
     const [responded, setResponded] = useState(false)
+    // const [overview, setOverview] = useState(false)
 
     const handleRevealClick = async () => {
         if(revealed){return}
@@ -18,16 +19,17 @@ export default function Feature({ sub }) {
 
     const setResult = async result => {
         if(responded){return}
-        const resp = await fetch('/api/result', {
-            method: 'POST',
-            body: JSON.stringify({ result })
-        })
+        const resp = await submit(imageId, result)
         setResponded(result ? "Y" : "N")
     }
 
     const resultClasses = revealed ? "result visible" : "result hidden"
 
-    const resultMessage = () => <p>{responded === "Y" ? "Nice one" : "Boo..." }</p>
+    const resultMessage = () => (
+        <div>
+            <p>{responded === "Y" ? "Nice one" : "Boo..." }</p>
+            {/* <p>{overview.totalCorrect} / {overview.totalShown} correct</p> */}
+        </div>)
 
     return (
         <div className="featured">

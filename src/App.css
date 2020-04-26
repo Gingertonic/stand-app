@@ -105,13 +105,20 @@ p {
   grid-template-columns: 1fr 1fr;
 }
 
-
 .featured {
   display: grid;
   grid-template-rows: 1fr 4fr 1fr;
   justify-content: center;
-  border: 2px solid gold;
+  /* border: 2px solid gold; */
   max-height: 60vh;
+}
+
+#total {
+  /* position: fixed; */
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  transform: translate(-50%, -50%);
 }
 
 input, button, #file-upload-button {

@@ -3,22 +3,24 @@ const fauna = new faunadb.Client({ secret: process.env.FAUNADB_SERVER_SECRET })
 const q = faunadb.query
 
 exports.handler = async (event, context) => {
-  if (event.httpMethod !== 'GET'){
-    return { statusCode: 405, body: JSON.stringify({ message: "GET OUTTA HERE!"})} 
+  if (event.httpMethod !== 'PATCH'){
+    return { statusCode: 405, body: JSON.stringify({ message: "PATCH IT UP!"})} 
   }
 
   try {
+    const { result, id } = JSON.parse(event.body)
+    console.log(result)
+    const updated = { correct: result }
+    const req = await fauna.query(q.Update(q.Ref(`classes/submissions/${id}`), {data: updated}))
 
-    const req = await fauna.query(q.Map(q.Paginate(q.Match(q.Index("all_submissions"))), q.Lambda("attr", q.Get(q.Var("attr")))))
+    const reqUpdated = await fauna.query(q.Map(q.Paginate(q.Match(q.Index("all_submissions"))), q.Lambda("attr", q.Get(q.Var("attr")))))
 
-    const allSubmissions = req.data
+    const allSubmissions = reqUpdated.data 
+
     const shown = allSubmissions.filter(s => !!s.data.shown)
     const correct = shown.filter(s => !!s.data.correct)
-    const remaining = allSubmissions.length - shown.length
 
     const overview = {
-      total: allSubmissions.length,
-      totalRemaining: remaining,
       totalCorrect: correct.length,
       totalShown: shown.length
     }

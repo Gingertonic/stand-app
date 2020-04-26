@@ -4,6 +4,7 @@ import { Feature } from '../components'
 export default function Play() {
     const [loading, setLoading] = useState(false) 
     const [featured, setFeatured] = useState([])
+    const [overview, setOverview] = useState()
 
     useEffect(() => {
         const fetchFeatured = async () => {
@@ -16,17 +17,31 @@ export default function Play() {
         fetchFeatured()
     }, [])
 
+    const submitResult = async (id, result) => {
+        const resp = await fetch('/api/result', {
+            method: 'PATCH',
+            body: JSON.stringify({ id, result })
+        })
+        const overview = await resp.json()
+        setOverview(overview)
+    }
+
     const showFeatured = () => {
         return !featured[0] ? <p>We're out of submissions!</p>
-        : featured.map(f => <Feature key={Math.random()} sub={f}/>)
+        : featured.map(f => <Feature key={Math.random()} sub={f} submit={submitResult}/>)
     }
+
+    const showTotals = () => overview ? <p id="total">{overview.totalCorrect} / {overview.totalShown} correct</p> : null
 
     return (
         <div id="play">
            { loading ?
             <p>Loading . . .</p>
            :
-            <div id="featured" className={featured.length > 1 ? 'multi' : 'one'}>{showFeatured()}</div>
+            <><div id="featured" className={featured.length > 1 ? 'multi' : 'one'}>
+                {showFeatured()}
+            </div>
+            {showTotals()}</>
            }
         </div>
     )
