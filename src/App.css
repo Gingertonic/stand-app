@@ -19,6 +19,7 @@
 
 .featured img, .preview {
  height: 30vh;
+ max-width: 40vw;
  /* margin: 25px; */
  border: 2px solid var(--myGrape);
  border-radius: 5px;
@@ -107,9 +108,10 @@ p {
 
 .featured {
   display: grid;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 1fr 4fr 1fr;
   justify-content: center;
-  /* border: 2px solid gold; */
+  border: 2px solid gold;
+  max-height: 60vh;
 }
 
 input, button, #file-upload-button {
@@ -127,6 +129,10 @@ input, button {
   margin: 2vh;
   font-size: 20px;
   /* padding: 2vh; */
+}
+
+.result button {
+  width: 40%;
 }
 
 #file-upload-button {
@@ -148,6 +154,9 @@ code {
 code span {
   color: var(--myWhite);
 }
+
+.hidden { visibility: hidden;}
+.visible { visibility: visible;}
 
 @media only screen and (min-width: 1024px) {
   h1 {
@@ -211,6 +220,10 @@ code span {
     /* border: 2px solid gold; */
     /* border-bottom: 1px dashed var(--myLightBlue); */
   }
+
+  .featured img, .preview {
+    max-width: 60vw;
+   }
 
   #overview, #upload, #play {
     height: 85vh;
