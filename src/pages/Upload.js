@@ -21,18 +21,21 @@ export default function Upload() {
             body: imageData
         })
         const { error, url } = await resp.json()
+        console.log(error, url)
         if(error){return}
 
         const imageUrl = url
-
+        console.log(url)
         // // 2. send the image link and user's name to our storage
         const submissionData = { imageUrl, name }
+        console.log(submissionData)
         const dbresp = await fetch('/api/upload', {
             method: 'POST',
             body: JSON.stringify(submissionData)
         })
+        console.log(dbresp)
         const dbdata = await dbresp.json()
-
+        console.log(dbdata)
         dbdata.message ? setSuccess() : console.error('Something went wrong....')    
     }
 
