@@ -6,6 +6,7 @@ export default function Feature({ sub }) {
     const [revealed, setRevealed] = useState(false)
 
     const handleRevealClick = async () => {
+        if(revealed){return}
         const resp = await fetch('/api/reveal', {
             method: 'PATCH',
             body: JSON.stringify({ id: imageId })
@@ -16,8 +17,8 @@ export default function Feature({ sub }) {
 
     return (
         <div className="featured">
+            <code>:belongs_to <span onClick={handleRevealClick} disabled={revealed}>{revealed ? name : 'Reveal'}</span></code>
             <img src={imageUrl} alt="feature"/>
-            <code>:belongs_to </code><button onClick={handleRevealClick} disabled={revealed}>{revealed ? name : 'Reveal'}</button>
         </div>
     )
 }

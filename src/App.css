@@ -1,7 +1,219 @@
+:root {
+  --myWhite: rgb(239, 230, 221);
+  --myBlue: rgb(21, 22, 25);
+  --myRed: rgb(167, 38, 8);
+  --myGrey: rgb(153, 153, 161);
+  --myGrape: rgb(174, 140, 163);
+  --myLightBlue: rgb(98,60,234, 0.4);
+}
+
 .App {
   text-align: center;
+  display: grid;
+  position: fixed;
+  width: 100%;
+  /* background-color: var(--myBlue);
+  color: var(--myWhite); */
+  height: 100%; 
 }
 
 .featured img, .preview {
-  height: 200px;
+ height: 30vh;
+ /* margin: 25px; */
+ border: 2px solid var(--myGrape);
+ border-radius: 5px;
+ margin: 0 auto;
+}
+
+h1 {
+  color: var(--myWhite);
+  margin: 1.5em 0em;
+  max-width: 100vw;
+  font-size: 1.5em;
+  letter-spacing: 3px;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  max-height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  z-index: 1;
+  margin: 20px 0;
+  /* background-color: var(--myGrape); */
+  /* z-index: -1; */
+}
+
+p {
+  font-size: 20px;
+}
+
+.nav-link {
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  color: var(--myWhite);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.nav-link:hover {
+  background-color: var(--myLightBlue);
+  font-weight: 1000;
+}
+
+.current-page {
+  color: var(--myRed);;
+}
+
+#overview, #upload, #play {
+  width: 90%;
+  margin: 5%;
+  /* padding: 5%; */
+  position: fixed;
+  bottom: 10px;
+  height: 70vh;
+  /* border: 2px solid var(--myGrape); */
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+#featured {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  /* border: 2px solid gold; */
+  /* height: i; */
+  width: inherit;
+  position: inherit;
+}
+
+#featured.one {
+  grid-template-rows: 1fr 1fr;
+}
+
+#featured.multi {
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.featured {
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+  justify-content: center;
+  /* border: 2px solid gold; */
+}
+
+input, button, #file-upload-button {
+  /* margin: auto 0; */
+  font-family: monospace;
+  text-align: center;
+  background-color: var(--myWhite);
+  color: var(--myBlue);
+  border-radius: 5px;
+}
+
+input, button {
+  /* height: 2vh; */
+  width: 50vw;
+  margin: 2vh;
+  font-size: 20px;
+  /* padding: 2vh; */
+}
+
+#file-upload-button {
+  margin: 0 auto;
+}
+
+span:hover {
+  cursor: pointer;
+  text-shadow: 0 0 3px var(--myWhite);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  color: var(--myRed);
+  margin: 2em;
+}
+
+code span {
+  color: var(--myWhite);
+}
+
+@media only screen and (min-width: 1024px) {
+  h1 {
+    font-size: 50px;
+  }  
+
+  .nav-link {
+    font-size: 20px;
+  }
+
+  p, code {
+    font-size: 30px;
+  }
+
+  #featured.multi {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  input, button {
+    /* height: 2vh; */
+    width: 90vw;
+    /* margin: 5vh; */
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 25px;
+    margin: 2em 0em;
+  }  
+
+  .nav-link {
+    font-size: 15px;
+  }
+
+  code {
+    margin: 5px;
+  } 
+
+  p, code {
+    font-size: 20px;
+  }
+
+  #featured.multi {
+    position: fixed;
+    bottom: 0;
+    height: inherit;
+    display: block;
+    /* grid-template-columns: 1fr 1fr; */
+    overflow: scroll;
+    /* border: 2px solid gold; */
+  }
+
+  .featured {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-rows: 0.5fr 2fr;
+    justify-content: center;
+    padding-bottom: 10px;
+    /* border: 2px solid gold; */
+    /* border-bottom: 1px dashed var(--myLightBlue); */
+  }
+
+  #overview, #upload, #play {
+    height: 85vh;
+  }
+
 }

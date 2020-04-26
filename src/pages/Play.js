@@ -22,12 +22,11 @@ export default function Play() {
     }
 
     return (
-        <div>
-           <h1>Play</h1>
+        <div id="play">
            { loading ?
             <p>Loading . . .</p>
            :
-            showFeatured()
+            <div id="featured" className={featured.length > 1 ? 'multi' : 'one'}>{showFeatured()}</div>
            }
         </div>
     )

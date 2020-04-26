@@ -54,8 +54,7 @@ export default function Upload() {
     const showUploadWidget = () => {
         return (
             <>
-            <h1>Upload</h1>
-            <input type="text" value={name} onChange={handleNameChange}/>
+            <input type="text" value={name} placeholder="Your name" onChange={handleNameChange}/>
             <input type="file" onChange={storeFileLocally}/>
             { file ? <img className="preview" src={URL.createObjectURL(file)} alt="upload preview"/> : null }
             <button onClick={handleUploadClick}>Upload!</button>
@@ -64,7 +63,7 @@ export default function Upload() {
     }
 
     return (
-        <div>
+        <div id="upload">
             {
                 uploadStatus ? 
                     <div>

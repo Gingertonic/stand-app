@@ -13,8 +13,7 @@ export default function Overview() {
     }, [])
 
     return (
-        <div>
-            <h1>Overview</h1>
+        <div id="overview">
             { ov ? 
                 <p>Out of {ov.total} submissions, {ov.remaining} are yet to be guessed!</p>
             : "Loading..." 

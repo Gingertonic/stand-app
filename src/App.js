@@ -6,9 +6,11 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-        <NavLink to="/"><h1>Stand App</h1></NavLink>
-        <NavLink to="/upload">Upload</NavLink>
-        <NavLink to="/play">Play</NavLink>
+        <header><NavLink to="/"><h1>Stand App</h1></NavLink></header>
+        <nav>
+          <NavLink className="nav-link" activeClassName="current-page" to="/upload">Upload</NavLink>
+          <NavLink className="nav-link" activeClassName="current-page" to="/play">Play</NavLink>
+        </nav>
         <Switch>
           <Route exact path="/" component={Overview}/>
           <Route path="/upload" component={Upload}/>
