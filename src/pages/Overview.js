@@ -5,6 +5,7 @@ export default function Overview() {
 
     useEffect(() => {
         const fetchOverview = async () => {
+            console.log('Fetching overview')
             const resp = await fetch('/api/overview')
             const data = await resp.json()
             setOv(data)

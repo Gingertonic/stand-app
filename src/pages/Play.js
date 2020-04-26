@@ -9,6 +9,7 @@ export default function Play() {
     useEffect(() => {
         const fetchFeatured = async () => {
             setLoading(true)
+            console.log('Fetching featured')
             const resp = await fetch('/api/featured')
             const { featured } = await resp.json()
             setFeatured(featured)
@@ -18,6 +19,7 @@ export default function Play() {
     }, [])
 
     const submitResult = async (id, result) => {
+        console.log('Updating results')
         const resp = await fetch('/api/result', {
             method: 'PATCH',
             body: JSON.stringify({ id, result })

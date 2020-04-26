@@ -8,6 +8,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    console.log('Fetching featured')
     const req = await fauna.query(q.Map(q.Paginate(q.Match(q.Index("all_submissions"))), q.Lambda("attr", q.Get(q.Var("attr")))))
 
     const remaining = req.data.filter(s => !s.data.shown)

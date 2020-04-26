@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    console.log(JSON.parse(event.body))
+    console.log('Uploading submission')
     const { name, imageUrl } = JSON.parse(event.body)
 
     const submission = { data: {

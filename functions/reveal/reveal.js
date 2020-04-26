@@ -8,6 +8,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    console.log('Revealing name')
     const { id } = JSON.parse(event.body)
     const updated = { shown: true }
     const req = await fauna.query(q.Update(q.Ref(`classes/submissions/${id}`), {data: updated}))

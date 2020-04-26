@@ -8,7 +8,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-
+    console.log('Fetching overview')
     const req = await fauna.query(q.Map(q.Paginate(q.Match(q.Index("all_submissions"))), q.Lambda("attr", q.Get(q.Var("attr")))))
 
     const allSubmissions = req.data
